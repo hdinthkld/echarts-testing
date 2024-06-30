@@ -1,0 +1,162 @@
+<!--
+	THIS EXAMPLE WAS DOWNLOADED FROM https://echarts.apache.org/examples/en/editor.html?c=graph-simple&code=PYBwLglsB2AEC8sDeAoWtJgDYFMBcya6GOAHmAQOQBCAhgM4QDGsA4gE60gAWlRAvgBoiYYMCyQQBJEKK1oEALa1IMACIBXTqugBVEABMV-WAEYArAAZLw9PKUqo0AKIMI0AOb6jYE5QCOGu6QTACS0ADyGmCUtrD0OOwQOPQEANpE6KjExGAAniB-Hpw8sZnEWLR5wNFUAGbA7Ew4ZTno9HmKAEbiAMoQAF4mVnE57MC0igRg7Bo4oxW0XThY0uU59NzAAO7TszjrsLJtsDgGHji9nT2rsGmUTBBNuLGwlLTs49uUALoL6GcLldun1BiY0gAWQRmSx_Q6AnAAGSWKzWJ3QDWgYH6QwIACZLIdjm0fLR0ocshTiNBJn4AHLAAw4MytdHoUgEADM1n-bTyXJ5VIxEFIZz2cypxJO2TZsBpinpjOZeNZbI5sAAHILZbB-bBuTYhbA6iKxRh9pLeZSdfLFUz9ar0erzCMjXrTNrZSbRQZxQc2VK2jK2baqAz7RDHSdna6dXqrIadd6zTMJQGrYQbbSw0rYOYo21k77jbQsAlJYc4ScAPTV2BYdwAa1SdyrbQb0Gb5LZwfR9BqTRMidlYA-FwoZgz7WuoNxd3M0IJbbZlWWt17bM2Oz9RsDJw7l3yuDROtg2wgBjA3AIC6N6CYWgAbjhoCkW5YAHR43eWqkbtr9lozQ5vaKpThgY44BOlDhsypgFjkq6opmp5brs5pprKe7tu4h55MeKE6g-7DPq-9Dvl-P7pn-RqAYOIFwQhuSQdBsEOr-Pa0QOwFvGxYFGqO7Djgx7HUZxOp0TxMG5vxOqCcJvG5pGHHov-GzcXajHgfJUEicpYmqVxQGaXmTHoDprG5vBKnSkZ9GKfa-baSxIkqhWJzLhUuG9EeJhqbAoC0I8-QEJ-ACcGbnpe16wHiGbEaRb6hUS5T8EQPwoPwADcQA
+	⚠ Please be aware that this chart is not an official demo of Apache ECharts but is made by user-generated code.
+-->
+<!DOCTYPE html>
+<html lang="en" style="height: 100%">
+<head>
+  <meta charset="utf-8">
+</head>
+<body style="height: 100%; margin: 0">
+  <div id="container" style="height: 100%"></div>
+
+  
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
+  
+  <!-- Uncomment this line if you want to dataTool extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.5.1/dist/extension/dataTool.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to use gl extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts-gl@2/dist/echarts-gl.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to echarts-stat extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts-stat@latest/dist/ecStat.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to echarts-graph-modularity extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts-graph-modularity@2/dist/echarts-graph-modularity.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to use map
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@4.9.0/map/js/world.js"></script>
+  -->
+  <!-- Uncomment these two lines if you want to use bmap extension
+  <script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=YOUR_API_KEY"></script>
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.5.1/dist/extension/bmap.min.js"></script>
+  -->
+
+  <script type="text/javascript">
+    var dom = document.getElementById('container');
+    var myChart = echarts.init(dom, null, {
+      renderer: 'canvas',
+      useDirtyRect: false
+    });
+    var app = {};
+    
+    var option;
+
+    option = {
+  title: {
+    text: 'Basic Graph'
+  },
+  tooltip: {},
+  animationDurationUpdate: 1500,
+  animationEasingUpdate: 'quinticInOut',
+  series: [
+    {
+      type: 'graph',
+      layout: 'force',
+      symbolSize: 50,
+      roam: true,
+      label: {
+        show: true
+      },
+      edgeSymbol: ['circle', 'arrow'],
+      edgeSymbolSize: [4, 10],
+      edgeLabel: {
+        fontSize: 20
+      },
+      data: [
+        {
+          name: 'Node 1',
+          x: 300,
+          y: 300,
+          fixed: true
+        },
+        {
+          name: 'Node 2',
+          x: 800,
+          y: 300,
+          fixed: true
+        },
+        {
+          name: 'Node 3',
+          x: 550,
+          y: 100,
+          fixed: true
+        },
+        {
+          name: 'Node 4',
+          x: 550,
+          y: 500,
+          fixed: true
+        },
+        {
+          name: 'Node 5',
+          fixed: false
+        }
+      ],
+      // links: [],
+      links: [
+        {
+          source: 0,
+          target: 1,
+          symbolSize: [5, 20],
+          label: {
+            show: true
+          },
+          lineStyle: {
+            width: 5,
+            curveness: 0.2
+          }
+        },
+        {
+          source: 'Node 2',
+          target: 'Node 1',
+          label: {
+            show: true
+          },
+          lineStyle: {
+            curveness: 0.5
+          }
+        },
+        {
+          source: 'Node 1',
+          target: 'Node 3'
+        },
+        {
+          source: 'Node 2',
+          target: 'Node 3'
+        },
+        {
+          source: 'Node 2',
+          target: 'Node 4'
+        },
+        {
+          source: 'Node 1',
+          target: 'Node 4'
+        },
+        {
+          source: 'Node 5',
+          target: 'Node 1'
+        },
+        {
+          source: 'Node 5',
+          target: 'Node 2'
+        }
+      ],
+      lineStyle: {
+        opacity: 0.9,
+        width: 2,
+        curveness: 0
+      }
+    }
+  ]
+};
+
+    if (option && typeof option === 'object') {
+      myChart.setOption(option);
+    }
+
+    window.addEventListener('resize', myChart.resize);
+  </script>
+</body>
+</html>

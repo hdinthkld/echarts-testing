@@ -1,0 +1,95 @@
+<!--
+	THIS EXAMPLE WAS DOWNLOADED FROM https://echarts.apache.org/examples/en/editor.html?c=graph-webkit-dep&code=LYTwwgFghgTgLgOgM4QPYHcAyqoBMCWAdgOYAUAlANwBQoksiKG2eRZV1AJAsQKZykASgHlhAFQD6ABQCCYgBIACANSKA5AHpcUOFA1QkSflp170vAEYBrfHAC0uXgAcEAKySpCagDSKAZgCuhADGcPieiqTm1rYAIs7kigDe1IqKdNDwCBD4jiwEJBQ0aahOYREAvMmpaYoANrx8hLgAXNW1tdq6bQDaavJiALKYAKINwLyEcD7qAOqWAOKYM2oAygBqCytgq6srwnAQvDBqALo1aQC-3heKRjD4vEi9t2kpHR1wIE68bWrEMCgTggPletTqUBAqACcD-flQMGCvFBH1qUEI-GAOnChDafigdSMN1RaQhFl4dTa7xJaScqCQthxfwexAg02JNP8CKxcDgxz-SQslzUYKuHNRuEBxGIUAsDTacBgAV44o-XSgbWiNjg8RchFQjiQCCxTlIgRC5UIkX1jl8uQAHolqTSbbwELlFFUHcVOTB-AEYFbXT7UZdyKqOsEdI0EY9nootXFnAgo3ziLGnhHavDEb92pzeLg-JhJsRDm0AKxZjp-pwBQlMxQAJgADNXagCoAA3WwgNothBN0WKa7Dwt8eOJnXJupEKxIMGXW7nK4-jIMZD8YRlHGkUqWjhhyhAA
+	⚠ Please be aware that this chart is not an official demo of Apache ECharts but is made by user-generated code.
+-->
+<!DOCTYPE html>
+<html lang="en" style="height: 100%">
+<head>
+  <meta charset="utf-8">
+</head>
+<body style="height: 100%; margin: 0">
+  <div id="container" style="height: 100%"></div>
+
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
+  
+  <!-- Uncomment this line if you want to dataTool extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.5.1/dist/extension/dataTool.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to use gl extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts-gl@2/dist/echarts-gl.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to echarts-stat extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts-stat@latest/dist/ecStat.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to echarts-graph-modularity extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts-graph-modularity@2/dist/echarts-graph-modularity.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to use map
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@4.9.0/map/js/world.js"></script>
+  -->
+  <!-- Uncomment these two lines if you want to use bmap extension
+  <script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=YOUR_API_KEY"></script>
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.5.1/dist/extension/bmap.min.js"></script>
+  -->
+
+  <script type="text/javascript">
+    var dom = document.getElementById('container');
+    var myChart = echarts.init(dom, null, {
+      renderer: 'canvas',
+      useDirtyRect: false
+    });
+    var app = {};
+    var ROOT_PATH = 'https://echarts.apache.org/examples';
+    var option;
+
+    myChart.showLoading();
+myChart.showLoading();
+//$.get(ROOT_PATH + '/data/asset/data/webkit-dep.json', function (webkitDep) {
+$.get('webkit-dep.json', function (webkitDep) {
+
+  myChart.hideLoading();
+  option = {
+    legend: {
+      data: ['CustomerA', 'Core', 'Customer B', 'Cloud', 'Customer C']
+    },
+    series: [
+      {
+        type: 'graph',
+        layout: 'force',
+        animation: false,
+        label: {
+          show: false,
+          position: 'bottom',
+          formatter: '{b}'
+        },
+        draggable: false,
+        data: webkitDep.nodes.map(function (node, idx) {
+          node.id = idx;
+          return node;
+        }),
+        categories: webkitDep.categories,
+        force: {
+          edgeLength: 5,
+          repulsion: 40,
+          gravity: 0.2,
+          layoutAnimation: false
+        },
+        // curveness: 0.5,
+        // edgeSymbol: ['circle', 'triangle'],
+        edges: webkitDep.links
+      }
+    ]
+  };
+  myChart.setOption(option);
+});
+
+
+    if (option && typeof option === 'object') {
+      myChart.setOption(option);
+    }
+
+    window.addEventListener('resize', myChart.resize);
+  </script>
+</body>
+</html>
